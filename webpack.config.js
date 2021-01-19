@@ -1,22 +1,18 @@
 const webpack = require('webpack')
 const path = require('path')
 const { merge } = require('webpack-merge')
-    // var VueLoaderPlugin = require('vue-loader/lib/plugin');
 module.exports = merge({
-    // devtool: 'source-map',
     entry: {
         'relation-graph': ['./src/index.js'],
-        // 'relation-graph': ['babel-polyfill', './src/index.js']
     },
     output: {
         path: path.resolve(__dirname, './dist'),
-        filename: 'relationgraph.min.js',
+        filename: 'rgraph.min.js',
         publicPath: '/dist/',
         library: 'relationGraph',
         libraryExport: 'default',
         libraryTarget: 'umd',
         umdNamedDefine: true,
-        // globalObject: 'typeof self !== \'undefined\' ? self : this'
     },
     externals: {
         vue: {
@@ -84,28 +80,10 @@ module.exports = merge({
     ]
 }, {
     plugins: [
-        // new VueLoaderPlugin(),
         new webpack.DefinePlugin({
             'process.env': {
                 NODE_ENV: '"production"'
             }
         }),
-        //new webpack.optimize.OccurrenceOrderPlugin(),
-        // new webpack.optimize.UglifyJsPlugin({
-        //   uglifyOptions: {
-        //     ie8: false,
-        //     output: {
-        //       comments: false,
-        //       beautify: false,
-        //     },
-        //     mangle: {
-        //       keep_fnames: true
-        //     },
-        //     compress: {
-        //       warnings: false,
-        //       drop_console: true
-        //     }
-        //   }
-        // })
     ]
 })
